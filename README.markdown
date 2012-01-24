@@ -28,6 +28,9 @@ Files
 Requirements
 ------------
 wxWidgets (with OpenGL)
+
 wxPython
+
 PyOpenGL
+
 numpy
