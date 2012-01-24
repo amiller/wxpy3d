@@ -1,4 +1,4 @@
-Wraps wxPython to get you an OpenGL context without much fuss. Useful for 3D visualizations.
+An alternative to GLUT that uses wxPython (so it works with the IPython background thread). Gets you an OpenGL context without much fuss. Useful for 3D visualizations.
 
 Example
 -------
@@ -23,14 +23,21 @@ Files
    - A window that responds mouse events by manipulating a *camera matrix*
 - wxpy3d.PointWindow (extends CameraWindow): 
    - Uses a vertex array buffer to efficiently draw a point cloud (numpy array)
+- examples/scatter.py
+   - Demo of a 3D point cloud viewer. Run with the following command (requires IPython):
 
+-
+
+
+
+              $ ipython -wthread
+              In [1]: run -i examples/scatter.py 
+    
 
 Requirements
 ------------
-wxWidgets (with OpenGL)
-
-wxPython
-
-PyOpenGL
-
-numpy
+- IPython
+- wxWidgets (with OpenGL)
+- wxPython
+- PyOpenGL
+- numpy
