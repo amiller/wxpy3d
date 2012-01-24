@@ -1,4 +1,5 @@
-# This module requires IPython to work! It is meant to be used from an IPython environment with: 
+# This module requires IPython to work! It is meant to be used from an IPython
+# environment with: 
 #   ipython -wthread and -pylab
 # See demo_pykinect.py for an example
 
@@ -6,7 +7,8 @@ import wx
 from wx import glcanvas
 from OpenGL.GL import *
 
-# Get the app ourselves so we can attach it to each window
+# We need to keep access to the actual wxpy app so we can
+# include it in the constructor for each window
 if not '__myapp' in wx.__dict__:
   wx.__myapp = wx.PySimpleApp()
 app = wx.__myapp
@@ -18,12 +20,14 @@ class Window(wx.Frame):
         def wrapper(*args, **kwargs):
           target(*args, **kwargs)
         self.canvas.Bind(wx.__dict__[target.__name__], wrapper)
+        return target
   
     # Events special to this class, just add them this way
     def event(self, target):
         def wrapper(*args, **kwargs):
           target(*args, **kwargs)   
         self.__dict__[target.__name__] = wrapper
+        return wrapper
         
     def _wrap(self, name, *args, **kwargs):
       try:
