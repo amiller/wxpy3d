@@ -4,11 +4,11 @@ from contextlib import contextmanager
 @contextmanager
 def opengl_attrib():
     try:
-        glPushClientAttrib(GL_ALL_CLIENT_ATTRIB_BITS)
+        glPushClientAttrib(GL_CLIENT_ALL_ATTRIB_BITS)
         glPushAttrib(GL_ALL_ATTRIB_BITS)
         yield
     finally:
-        glPopClientAttrib(GL_ALL_CLIENT_ATTRIB_BITS)
+        glPopClientAttrib(GL_CLIENT_ALL_ATTRIB_BITS)
         glPopAttrib(GL_ALL_ATTRIB_BITS)
 
 @contextmanager
