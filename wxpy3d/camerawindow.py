@@ -10,8 +10,8 @@ class CameraWindow(Window):
     self.rotangles = [0,0]
     self.zoomdist = 1
     self.clearcolor = [0,0,0,0]
-    self.lookat = np.array([0,0,0])
-    self.upvec = np.array([0,1,0])
+    self.lookat = np.array([0,0,0],'f')
+    self.upvec = np.array([0,1,0],'f')
     self.mode = 'perpsective'
     self._mpos = None
     super(CameraWindow,self).__init__(*args, **kwargs)
@@ -21,7 +21,15 @@ class CameraWindow(Window):
       self._mpos = event.Position
 
     @self.eventx
+    def EVT_RIGHT_DOWN(event):
+      self._mpos = event.Position
+
+    @self.eventx
     def EVT_LEFT_UP(event):
+      self._mpos = None
+
+    @self.eventx
+    def EVT_RIGHT_UP(event):
       self._mpos = None
 
     @self.eventx
@@ -31,6 +39,13 @@ class CameraWindow(Window):
           (x,y),(mx,my) = event.Position,self._mpos
           self.rotangles[0] += y-my
           self.rotangles[1] += x-mx
+          self.Refresh()    
+        self._mpos = event.Position
+      elif event.RightIsDown():
+        if self._mpos:
+          (x,y),(mx,my) = event.Position,self._mpos
+          self.lookat[2] += (y-my)*0.01
+          self.lookat[0] += (x-mx)*0.01
           self.Refresh()    
         self._mpos = event.Position
 
