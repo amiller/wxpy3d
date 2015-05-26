@@ -14,6 +14,7 @@ Example
     window.update_points(xyz, rgba)
     window.Refresh()
 
+<img src="http://i.imgur.com/BDENcYy.gif" width=800 />
     
 Files
 -----
